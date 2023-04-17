@@ -3,5 +3,4 @@ Rails.application.routes.draw do
   resources :products
   resources :suppliers
   resources :purchase_records
-  get '/purchase_records/get_suppliers', to: 'purchase_records#get_suppliers'
 end
