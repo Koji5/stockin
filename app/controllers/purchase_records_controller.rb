@@ -48,7 +48,12 @@ class PurchaseRecordsController < ApplicationController
     if product.nil?
       render json: []
     else
-      @suppliers = product.suppliers
+      @suppliers = product.suppliers.map do |supplier|
+        {
+          id: supplier.id,
+          name: supplier.name
+        }
+      end
       render json: @suppliers
     end
   end
