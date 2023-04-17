@@ -1,0 +1,7 @@
+function post (){
+  console.log("イベント発火");
+};
+$('#purchase_record_supplier_id').empty();
+<% Product.find(params[:product_id]).suppliers.each do |supplier| %>
+  $('#purchase_record_supplier_id').append('<option value="<%= supplier.id %>"><%= supplier.name %></option>');
+<% end %>

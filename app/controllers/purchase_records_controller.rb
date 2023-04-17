@@ -35,6 +35,15 @@ class PurchaseRecordsController < ApplicationController
     redirect_to purchase_records_url, notice: '削除しました。'
   end
 
+  def get_suppliers
+    #@suppliers = Supplier.where(product_id: params[:product_id])
+    @product = Product.find(params[:product_id])
+    @suppliers = @product.suppliers
+    respond_to do |format|
+      get_suppliers.js
+    end
+  end
+
   private
     def set_purchase_record
       @purchase_record = PurchaseRecord.includes(:product, :supplier).find(params[:id])

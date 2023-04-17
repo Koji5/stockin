@@ -1,4 +1,15 @@
-<%= form_with(model: @purchase_record, local: true) do |form| %>
+<script>
+$(document).on('change', '#purchase_record_product_id', function(){
+  console.log("イベント発火");
+  $.ajax({
+    url: '/purchase_records/get_suppliers.js',
+    data: { product_id: $(this).val() },
+    dataType: 'script'
+  });
+});
+</script>
+
+<%= form_with(model: @purchase_record, local: true, data: { remote: true }) do |form| %>
   <% if @purchase_record.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@purchase_record.errors.count, "error") %> prohibited this purchase record from being saved:</h2>
@@ -23,12 +34,12 @@
 
   <div class="form-group">
     <%= form.label :product_id, "商品名" %>
-    <%= form.collection_select :product_id, Product.all, :id, :name, {}, class: 'form-control' %>
+    <%= select_tag 'purchase_record[product_id]', options_from_collection_for_select(Product.all, :id, :name), class: 'form-control' %>
   </div>
 
   <div class="form-group">
     <%= form.label :supplier_id, "業者名" %>
-    <%= form.collection_select :supplier_id, Supplier.all, :id, :name, {}, class: 'form-control' %>
+    <%= select_tag 'purchase_record[supplier_id]', options_from_collection_for_select(Supplier.all, :id, :name), class: 'form-control' %>
   </div>
 
   <div class="actions">
