@@ -1,0 +1,26 @@
+<h1>商品一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価</th>
+      <th>在庫数</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= link_to product.name, product_path(product) %></td>
+        <td><%= product.price %>円</td>
+        <td><%= product.stock %>個</td>
+        <td><%= link_to '編集', edit_product_path(product) %></td>
+        <td><%= link_to '削除', product_path(product), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to '新規登録', new_product_path %>

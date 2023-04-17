@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stockin</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= link_to "TOP", purchase_records_path %>
+    <%= link_to "入力", new_purchase_record_path %>
+    <%= link_to "商品一覧", products_path %>
+    <%= link_to "業者一覧", suppliers_path %>
+    <%= yield %>
+  </body>
+</html>

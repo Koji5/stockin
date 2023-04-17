@@ -1,0 +1,8 @@
+<p>業者名: <%= @supplier.name %></p>
+<p>電話番号: <%= @supplier.tel %></p>
+<p>取扱商品:
+  <% @products.each do |product| %>
+    <%= link_to product.name, product_path(product) %>
+    &nbsp;
+  <% end %>
+</p>
