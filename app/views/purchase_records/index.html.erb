@@ -7,17 +7,21 @@
       <th>商品名</th>
       <th>個数</th>
       <th>業者名</th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @purchase_records.each do |purchase_record| %>
       <tr>
-        <td><%= purchase_record.purchase_date %></td>
+        <td><%= link_to purchase_record.purchase_date, purchase_record_path(purchase_record) %></td>
         <td><%= purchase_record.product.name %></td>
         <td><%= purchase_record.quantity %></td>
         <td><%= purchase_record.supplier.name %></td>
-      </tr>
+        <td><%= link_to '編集', edit_purchase_record_path(purchase_record) %></td>
+        <td><%= link_to '削除', purchase_record_path(purchase_record), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+     </tr>
     <% end %>
   </tbody>
 </table>

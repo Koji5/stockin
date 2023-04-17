@@ -1,4 +1,6 @@
 class PurchaseRecordsController < ApplicationController
+  before_action :set_purchase_record, only: [:destroy, :update, :edit, :show]
+
   def index
     @purchase_records = PurchaseRecord.includes(:product, :supplier).all
   end

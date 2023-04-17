@@ -6,3 +6,5 @@
     &nbsp;
   <% end %>
 </p>
+<%= link_to '編集', edit_supplier_path(@supplier) %>
+<%= link_to '削除', supplier_path(@supplier), method: :delete, data: { confirm: '本当に削除しますか？' } %>
