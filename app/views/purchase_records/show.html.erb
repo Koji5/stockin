@@ -1,0 +1,25 @@
+<h1>仕入詳細</h1>
+
+<p>
+  <strong>仕入日:</strong>
+  <%= @purchase_record.purchase_date %>
+  <%= @purchase_record.purchase_date %>
+</p>
+
+<p>
+  <strong>個数:</strong>
+  <%= @purchase_record.quantity %>
+</p>
+
+<p>
+  <strong>商品名:</strong>
+  <%= @purchase_record.product.name %>
+</p>
+
+<p>
+  <strong>業者名:</strong>
+  <%= @purchase_record.supplier.name %>
+</p>
+
+<%= link_to '編集', edit_purchase_record_path(@purchase_record) %> |
+<%= link_to '削除', purchase_record_path(@purchase_record), method: :delete, data: { confirm: '本当に削除しますか？' } %>

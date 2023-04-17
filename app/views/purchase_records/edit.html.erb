@@ -1,5 +1,5 @@
 <%= javascript_pack_tag 'get_suppliers' %>
-<h1>仕入登録</h1>
+<h1>仕入編集</h1>
 <%= form_with(model: @purchase_record, local: true) do |form| %>
   <% if @purchase_record.errors.any? %>
     <div id="error_explanation">
@@ -25,15 +25,15 @@
 
   <div class="form-group">
     <%= form.label :product_id, "商品名" %>
-    <%= form.collection_select :product_id, Product.all, :id, :name, {}, class: 'form-control' %>
+    <%= form.collection_select :product_id, Product.all, :id, :name, { selected: @purchase_record.product_id }, class: 'form-control' %>
   </div>
 
   <div class="form-group">
     <%= form.label :supplier_id, "業者名" %>
-    <%= form.collection_select :supplier_id, Supplier.all, :id, :name, {}, class: 'form-control' %>
+    <%= form.collection_select :supplier_id, Supplier.all, :id, :name, { selected: @purchase_record.supplier_id }, class: 'form-control' %>
   </div>
 
   <div class="actions">
-    <%= form.submit '仕入登録', class: 'btn btn-primary' %>
+    <%= form.submit '仕入更新', class: 'btn btn-primary' %>
   </div>
 <% end %>

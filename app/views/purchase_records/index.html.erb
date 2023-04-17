@@ -1,5 +1,27 @@
 <h1>仕入一覧</h1>
+<%= form_tag search_purchase_records_path, method: :get do %>
+  <div class="form-group">
+    <%= label_tag :purchase_date, "日付" %>
+    <%= date_field :purchase_date, params[:purchase_date], class: 'form-control' %>
+  </div>
 
+  <div class="form-group">
+    <%= label_tag :product_name, "商品名" %>
+    <%= text_field_tag :product_name, params[:product_name], class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag :supplier_name, "業者" %>
+    <%= text_field_tag :supplier_name, params[:supplier_name], class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag :product_stock, "在庫数" %>
+    <%= number_field_tag :product_stock, params[:product_stock], class: 'form-control' %>
+  </div>
+
+  <%= submit_tag "検索", class: 'btn btn-primary' %>
+<% end %>
 <table>
   <thead>
     <tr>
@@ -7,17 +29,21 @@
       <th>商品名</th>
       <th>個数</th>
       <th>業者名</th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @purchase_records.each do |purchase_record| %>
       <tr>
-        <td><%= purchase_record.purchase_date %></td>
+        <td><%= link_to purchase_record.purchase_date, purchase_record_path(purchase_record) %></td>
         <td><%= purchase_record.product.name %></td>
         <td><%= purchase_record.quantity %></td>
         <td><%= purchase_record.supplier.name %></td>
-      </tr>
+        <td><%= link_to '編集', edit_purchase_record_path(purchase_record) %></td>
+        <td><%= link_to '削除', purchase_record_path(purchase_record), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+     </tr>
     <% end %>
   </tbody>
 </table>
