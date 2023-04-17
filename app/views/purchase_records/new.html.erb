@@ -1,3 +1,4 @@
+<%= javascript_pack_tag 'get_suppliers' %>
 <%= form_with(model: @purchase_record, local: true) do |form| %>
   <% if @purchase_record.errors.any? %>
     <div id="error_explanation">
