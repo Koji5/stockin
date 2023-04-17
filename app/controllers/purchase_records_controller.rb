@@ -37,6 +37,12 @@ class PurchaseRecordsController < ApplicationController
     redirect_to purchase_records_url, notice: '削除しました。'
   end
 
+  def search
+    conditions = ["purchase_records.purchase_date = ? OR products.name = ? OR suppliers.name = ? OR products.stock = ?", params[:purchase_date], params[:product_name], params[:supplier_name], params[:product_stock]]
+    @purchase_records = PurchaseRecord.joins(:product, :supplier).select('purchase_records.*, products.name as product_name, suppliers.name as supplier_name').where(conditions)
+    render :index
+  end
+
   def get_suppliers
     product = Product.find_by(id: params[:product_id])
     if product.nil?

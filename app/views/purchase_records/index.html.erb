@@ -1,5 +1,27 @@
 <h1>仕入一覧</h1>
+<%= form_tag search_purchase_records_path, method: :get do %>
+  <div class="form-group">
+    <%= label_tag :purchase_date, "日付" %>
+    <%= date_field :purchase_date, params[:purchase_date], class: 'form-control' %>
+  </div>
 
+  <div class="form-group">
+    <%= label_tag :product_name, "商品名" %>
+    <%= text_field_tag :product_name, params[:product_name], class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag :supplier_name, "業者" %>
+    <%= text_field_tag :supplier_name, params[:supplier_name], class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag :product_stock, "在庫数" %>
+    <%= number_field_tag :product_stock, params[:product_stock], class: 'form-control' %>
+  </div>
+
+  <%= submit_tag "検索", class: 'btn btn-primary' %>
+<% end %>
 <table>
   <thead>
     <tr>

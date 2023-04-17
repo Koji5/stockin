@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :purchase_records do
     collection do
       get 'get_suppliers'
+      get 'search'
     end
   end
 end
