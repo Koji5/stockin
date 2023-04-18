@@ -17,14 +17,18 @@
 <div class="card mb-3"">
   <div class="card-body">
     <h5 class="card-title">商品名</h5>
-    <%= link_to @purchase_record.product.name, product_path(@purchase_record.product), class:"btn btn-outline-primary" %>
+    <% unless @purchase_record.product == nil %>
+      <%= link_to @purchase_record.product.name, product_path(@purchase_record.product), class:"btn btn-outline-primary" %>
+    <% end %>
   </div>
 </div>
 
 <div class="card mb-3">
   <div class="card-body">
     <h5 class="card-title">業者名</h5>
-    <%= link_to @purchase_record.supplier.name, supplier_path(@purchase_record.supplier), class:"btn btn-outline-primary" %>
+    <% unless @purchase_record.supplier == nil%>
+      <%= link_to @purchase_record.supplier.name, supplier_path(@purchase_record.supplier), class:"btn btn-outline-primary" %>
+    <% end %>
   </div>
 </div>
 
