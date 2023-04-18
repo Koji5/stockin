@@ -43,10 +43,10 @@ class SuppliersController < ApplicationController
   def destroy
     @supplier = Supplier.find(params[:id])
     @supplier.products.each do |product|
-      product.supplier.destroy(@supplier)
+      product.suppliers.destroy(@supplier) # 関連する商品から業者を削除
     end
-    @supplier.destroy # 商品を削除
-    redirect_to suppliers_url, notice: '商品を削除しました。'
+    @supplier.destroy # 業者を削除
+    redirect_to suppliers_url, notice: '業者を削除しました。'
   end
 
   private

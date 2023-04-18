@@ -44,7 +44,7 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     @product.suppliers.each do |supplier|
-      supplier.products.destroy(@product)
+      supplier.products.destroy(@product) # 関連する業者から商品を削除
     end
     @product.destroy # 商品を削除
     redirect_to products_url, notice: '商品を削除しました。'

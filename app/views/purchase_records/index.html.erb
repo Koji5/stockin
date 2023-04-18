@@ -52,9 +52,9 @@
       <% @purchase_records.each do |purchase_record| %>
         <tr>
           <td><%= link_to purchase_record.purchase_date, purchase_record_path(purchase_record), class: 'text-decoration-none' %></td>
-          <td><%= link_to purchase_record.product.name, product_path(purchase_record.product), class: 'text-decoration-none' %></td>
+          <td><%= link_to (purchase_record.product.present? ? purchase_record.product.name : "(削除済)"), purchase_record.product.present? ? product_path(purchase_record.product) : "#", class: 'text-decoration-none' %></td>
           <td><%= purchase_record.quantity %></td>
-          <td><%= link_to purchase_record.supplier.name, supplier_path(purchase_record.supplier), class: 'text-decoration-none' %></td>
+          <td><%= link_to (purchase_record.supplier.present? ? purchase_record.supplier.name : "(削除済)"), purchase_record.supplier.present? ? supplier_path(purchase_record.supplier) : "#", class: 'text-decoration-none' %></td>
           <td><%= link_to '編集', edit_purchase_record_path(purchase_record), class: 'btn btn-outline-primary btn-sm' %></td>
           <td><%= link_to '削除', purchase_record_path(purchase_record), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-outline-danger btn-sm' %></td>
       </tr>
