@@ -1,25 +1,33 @@
-<h1>仕入詳細</h1>
+<h1 class="mb-4">仕入詳細</h1>
 
-<p>
-  <strong>仕入日:</strong>
-  <%= @purchase_record.purchase_date %>
-  <%= @purchase_record.purchase_date %>
-</p>
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title">仕入日</h5>
+    <p class="card-text"><%= @purchase_record.purchase_date %></p>
+  </div>
+</div>
 
-<p>
-  <strong>個数:</strong>
-  <%= @purchase_record.quantity %>
-</p>
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title">個数</h5>
+    <p class="card-text"><%= @purchase_record.quantity %></p>
+  </div>
+</div>
 
-<p>
-  <strong>商品名:</strong>
-  <%= @purchase_record.product.name %>
-</p>
+<div class="card mb-3"">
+  <div class="card-body">
+    <h5 class="card-title">商品名</h5>
+    <%= link_to @purchase_record.product.name, product_path(@purchase_record.product), class:"btn btn-outline-primary" %>
+  </div>
+</div>
 
-<p>
-  <strong>業者名:</strong>
-  <%= @purchase_record.supplier.name %>
-</p>
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title">業者名</h5>
+    <%= link_to @purchase_record.supplier.name, supplier_path(@purchase_record.supplier), class:"btn btn-outline-primary" %>
+  </div>
+</div>
 
-<%= link_to '編集', edit_purchase_record_path(@purchase_record) %> |
-<%= link_to '削除', purchase_record_path(@purchase_record), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+<%= link_to '編集', edit_purchase_record_path(@purchase_record), class: 'btn btn-primary' %>
+<%= link_to '削除', purchase_record_path(@purchase_record), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger', style: 'margin-left: 10px' %>
+<%= link_to '戻る', purchase_records_path, class: 'btn btn-secondary', style: 'margin-left: 10px' %>

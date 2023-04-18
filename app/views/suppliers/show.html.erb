@@ -1,10 +1,25 @@
-<p>業者名: <%= @supplier.name %></p>
-<p>電話番号: <%= @supplier.tel %></p>
-<p>取扱商品:
-  <% @products.each do |product| %>
-    <%= link_to product.name, product_path(product) %>
-    &nbsp;
-  <% end %>
-</p>
-<%= link_to '編集', edit_supplier_path(@supplier) %>
-<%= link_to '削除', supplier_path(@supplier), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+<h1 class="mb-4">業者詳細</h1>
+
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title">業者名</h5>
+    <p class="card-text"><%= @supplier.name %></p>
+  </div>
+</div>
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title">電話番号</h5>
+    <p class="card-text"><%= @supplier.tel %></p>
+  </div>
+</div>
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title">取扱商品</h5>
+    <% @products.each do |product| %>
+      <%= link_to product.name, product_path(product), class:"btn btn-outline-primary" %>
+    <% end %>
+  </div>
+</div>
+<%= link_to '編集', edit_supplier_path(@supplier), class: 'btn btn-primary' %>
+<%= link_to '削除', supplier_path(@supplier), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger', style: 'margin-left: 10px' %>
+<%= link_to '戻る', suppliers_path, class: 'btn btn-secondary', style: 'margin-left: 10px' %>
