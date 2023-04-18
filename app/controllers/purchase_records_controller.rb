@@ -63,8 +63,9 @@ class PurchaseRecordsController < ApplicationController
       values << params[:product_stock]
     end
     
-    @purchase_records = PurchaseRecord
-      .joins(:product, :supplier)
+      @purchase_records = PurchaseRecord
+      .joins("LEFT OUTER JOIN products ON purchase_records.product_id = products.id")
+      .joins("LEFT OUTER JOIN suppliers ON purchase_records.supplier_id = suppliers.id")
       .select('purchase_records.*, products.name as product_name, suppliers.name as supplier_name')
       .where(conditions.join(" AND "), *values)
     
