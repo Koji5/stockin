@@ -15,21 +15,47 @@
         <div class="col-md-3 mb-1">
           <%= label_tag :product_name, "商品名", class: 'form-label' %>
           <%= text_field_tag :product_name, params[:product_name], class: 'form-control' %>
+          <div class="d-flex justify-content-start">
+            <div class="form-check">
+              <%= radio_button_tag :product_name_match_type, "forward", true, class: 'form-check-input' %>
+              <%= label_tag :product_name_match_type_forward, "前方一致", class: 'form-check-label' %>
+            </div>
+            <div class="px-3"></div>
+            <div class="form-check">
+              <%= radio_button_tag :product_name_match_type, "partial", false, class: 'form-check-input' %>
+              <%= label_tag :product_name_match_type_partial, "部分一致", class: 'form-check-label' %>
+            </div>
+          </div>
         </div>
 
         <div class="col-md-3 mb-1">
           <%= label_tag :supplier_name, "業者名", class: 'form-label' %>
           <%= text_field_tag :supplier_name, params[:supplier_name], class: 'form-control' %>
+          <div class="d-flex justify-content-start">
+            <div class="form-check">
+              <%= radio_button_tag :supplier_name_match_type, "forward", true, class: 'form-check-input' %>
+              <%= label_tag :supplier_name_match_type_forward, "前方一致", class: 'form-check-label' %>
+            </div>
+            <div class="px-3"></div>
+            <div class="form-check">
+              <%= radio_button_tag :supplier_name_match_type, "partial", false, class: 'form-check-input' %>
+              <%= label_tag :supplier_name_match_type_partial, "部分一致", class: 'form-check-label' %>
+            </div>
+          </div>
         </div>
 
         <div class="col-md-3 mb-1">
           <%= label_tag :product_stock, "在庫数", class: 'form-label' %>
-          <%= number_field_tag :product_stock, params[:product_stock], class: 'form-control' %>
+          <div class="input-group">
+            <%= number_field_tag :product_stock, params[:product_stock], class: 'form-control' %>
+            <span class="input-group-text">個より多い</span>
+          </div>
         </div>
 
         <div class="col-md-3">
           <%= submit_tag "検索", class: 'btn btn-primary' %>
         </div>
+
       </div>
     <% end %>
   </div>
@@ -41,7 +67,7 @@
       <tr>
         <th>仕入日</th>
         <th>商品名</th>
-        <th>個数</th>
+        <th>在庫数</th>
         <th>業者名</th>
         <th></th>
         <th></th>
@@ -53,7 +79,7 @@
         <tr>
           <td><%= link_to purchase_record.purchase_date, purchase_record_path(purchase_record), class: 'text-decoration-none' %></td>
           <td><%= link_to (purchase_record.product.present? ? purchase_record.product.name : "(削除済)"), purchase_record.product.present? ? product_path(purchase_record.product) : "#", class: 'text-decoration-none' %></td>
-          <td><%= purchase_record.quantity %></td>
+          <td><%= purchase_record.quantity.to_i.to_s(:delimited, delimiter: ',') %></td>
           <td><%= link_to (purchase_record.supplier.present? ? purchase_record.supplier.name : "(削除済)"), purchase_record.supplier.present? ? supplier_path(purchase_record.supplier) : "#", class: 'text-decoration-none' %></td>
           <td><%= link_to '編集', edit_purchase_record_path(purchase_record), class: 'btn btn-outline-primary btn-sm' %></td>
           <td><%= link_to '削除', purchase_record_path(purchase_record), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-outline-danger btn-sm' %></td>

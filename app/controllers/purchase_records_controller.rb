@@ -38,8 +38,36 @@ class PurchaseRecordsController < ApplicationController
   end
 
   def search
-    conditions = ["purchase_records.purchase_date = ? OR products.name = ? OR suppliers.name = ? OR products.stock = ?", params[:purchase_date], params[:product_name], params[:supplier_name], params[:product_stock]]
-    @purchase_records = PurchaseRecord.joins(:product, :supplier).select('purchase_records.*, products.name as product_name, suppliers.name as supplier_name').where(conditions)
+    product_name_match_type = params[:product_name_match_type] == 'partial' ? '%' : ''
+    supplier_name_match_type = params[:supplier_name_match_type] == 'partial' ? '%' : ''
+    
+    conditions = []
+    values = []
+    if params[:purchase_date].present?
+      conditions << "purchase_records.purchase_date = ?"
+      values << params[:purchase_date]
+    end
+    
+    if params[:product_name].present?
+      conditions << "products.name LIKE ?"
+      values << "#{product_name_match_type}#{params[:product_name]}"
+    end
+    
+    if params[:supplier_name].present?
+      conditions << "suppliers.name LIKE ?"
+      values << "#{supplier_name_match_type}#{params[:supplier_name]}"
+    end
+    
+    if params[:product_stock].present?
+      conditions << "products.stock > ?"
+      values << params[:product_stock]
+    end
+    
+    @purchase_records = PurchaseRecord
+      .joins(:product, :supplier)
+      .select('purchase_records.*, products.name as product_name, suppliers.name as supplier_name')
+      .where(conditions.join(" AND "), *values)
+    
     render :index
   end
 

@@ -10,7 +10,7 @@
 <div class="card mb-3">
   <div class="card-body">
     <h5 class="card-title">個数</h5>
-    <p class="card-text"><%= @purchase_record.quantity %></p>
+    <p class="card-text"><%= @purchase_record.quantity.to_i.to_s(:delimited, delimiter: ',') %></p>
   </div>
 </div>
 
