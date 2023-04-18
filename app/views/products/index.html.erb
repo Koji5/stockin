@@ -1,26 +1,29 @@
-<h1>商品一覧</h1>
+<div class="d-flex justify-content-between mb-4">
+  <h1 class="h3">商品一覧</h1>
+  <%= link_to '新規商品登録', new_product_path, class: 'btn btn-primary' %>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>商品名</th>
-      <th>単価</th>
-      <th>在庫数</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @products.each do |product| %>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= link_to product.name, product_path(product) %></td>
-        <td><%= product.price %>円</td>
-        <td><%= product.stock %>個</td>
-        <td><%= link_to '編集', edit_product_path(product) %></td>
-        <td><%= link_to '削除', product_path(product), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+        <th>商品名</th>
+        <th>単価</th>
+        <th>在庫数</th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= link_to '新規登録', new_product_path %>
+    </thead>
+    <tbody>
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= link_to product.name, product_path(product), class: 'text-decoration-none' %></td>
+          <td><%= product.price.to_i.to_s(:delimited, delimiter: ',') %>円</td>
+          <td><%= product.stock %>個</td>
+          <td><%= link_to '編集', edit_product_path(product), class: 'btn btn-outline-primary btn-sm' %></td>
+          <td><%= link_to '削除', product_path(product), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-outline-danger btn-sm' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

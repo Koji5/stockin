@@ -1,24 +1,27 @@
-<h1>業者一覧</h1>
+<div class="d-flex justify-content-between mb-4">
+  <h1 class="h3">業者一覧</h1>
+  <%= link_to '新規業者登録', new_supplier_path, class: 'btn btn-primary' %>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>業者名</th>
-      <th>電話番号</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @suppliers.each do |supplier| %>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= link_to supplier.name, supplier_path(supplier) %></td>
-        <td><%= supplier.tel %></td>
-        <td><%= link_to '編集', edit_supplier_path(supplier) %></td>
-        <td><%= link_to '削除', supplier_path(supplier), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+        <th>業者名</th>
+        <th>電話番号</th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= link_to '新規登録', new_supplier_path %>
+    </thead>
+    <tbody>
+      <% @suppliers.each do |supplier| %>
+        <tr>
+          <td><%= link_to supplier.name, supplier_path(supplier), class: 'text-decoration-none' %></td>
+          <td><%= supplier.tel %></td>
+          <td><%= link_to '編集', edit_supplier_path(supplier), class: 'btn btn-outline-primary btn-sm' %></td>
+          <td><%= link_to '削除', supplier_path(supplier), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-outline-danger btn-sm' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
