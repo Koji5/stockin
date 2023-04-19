@@ -79,7 +79,7 @@
           <td><%= purchase_record.quantity.to_i.to_s(:delimited, delimiter: ',') %></td>
           <td><%= link_to (purchase_record.supplier.present? ? purchase_record.supplier.name : "(削除済)"), purchase_record.supplier.present? ? supplier_path(purchase_record.supplier) : "#", class: 'text-decoration-none' %></td>
           <td><%= link_to '編集', edit_purchase_record_path(purchase_record), class: 'btn btn-outline-primary btn-sm' %></td>
-          <td><%= link_to '削除', purchase_record_path(purchase_record), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-outline-danger btn-sm' %></td>
+          <td><%= link_to '削除', purchase_record_path(purchase_record), method: :delete, data: { confirm: "商品の在庫数は変更されません。&#13;&#10;削除しますか？".html_safe }, class: 'btn btn-outline-danger btn-sm' %></td>
       </tr>
       <% end %>
     </tbody>
