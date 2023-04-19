@@ -33,7 +33,7 @@
 
   <div class="mb-3">
     <%= form.label :supplier_id, "業者名", class: "form-label" %>
-    <%= form.collection_select :supplier_id, Supplier.all, :id, :name, {}, class: 'form-select' %>
+    <%= form.collection_select :supplier_id, [], :id, :name, {}, class: 'form-select' %>
   </div>
 
     <%= form.submit '仕入登録', class: 'btn btn-primary' %>

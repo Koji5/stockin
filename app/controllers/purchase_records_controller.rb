@@ -17,7 +17,9 @@ class PurchaseRecordsController < ApplicationController
 
   def create
     @purchase_record = PurchaseRecord.new(purchase_record_params)
-    if @purchase_record.save
+    @product = Product.find(@purchase_record.product_id)
+    @product.stock +=  @purchase_record.quantity.to_i
+    if @purchase_record.save && @product.save
       redirect_to @purchase_record, notice: '作成しました。'
     else
       render :new
