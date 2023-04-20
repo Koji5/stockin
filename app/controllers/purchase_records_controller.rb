@@ -98,3 +98,4 @@ class PurchaseRecordsController < ApplicationController
       params.require(:purchase_record).permit(:purchase_date, :quantity, :product_id, :supplier_id)
     end
 end
+##sourcetreeテスト用
