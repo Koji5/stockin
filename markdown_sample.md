@@ -33,14 +33,18 @@
 - [x] bbb
 - [ ] ccc
 
-# 強調
+# 強調・打消し
 This is *italic* text.
+これは*斜体*です
 
-This is also _italic_ text.
-
+This is **bold** text.
 これは**太字**です
 
-これは ~~打消し~~ です。
+This is ***italic&bold*** text.
+これは***太字の斜体***です
+
+This is ~~strikethrough~~ text.
+これは取り消し線です
 
 # 引用
 > 引用
@@ -61,7 +65,7 @@ a|b|c
 10|11|12
 
 # コード
-```rb
+```ruby
 class ApplicationController < ActionController::Base
   # code sample
 end
