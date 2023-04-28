@@ -39,13 +39,12 @@ This is *italic* text.
 This is also _italic_ text.
 
 これは**太字**です
- 
-これも__太字__です
 
 これは ~~打消し~~ です。
 
 # 引用
 > 引用
+>> 引用の中で引用
 
 # リンク
 [リンク](https://www.google.com/)
@@ -69,14 +68,14 @@ end
 ```
 
 # インラインコード
-コードは `sample` このように表示されます。
+インラインコードは `sample` このように表示されます。
 
 # 折りたたみ
 <details>
 <summary>xxx</summary>
-aaaaaaaaaaaaaaaaaaaaa
-bbbbbbbbbbbbbbbbbbb
-ccccccccccccccccccccc
+aaaaaaaaaaaaaaaaaaaaa<br>
+bbbbbbbbbbbbbbbbbbb<br>
+ccccccccccccccccccccc<br>
 </details>
 
 # 数式
